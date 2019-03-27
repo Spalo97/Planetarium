@@ -18,7 +18,6 @@ public class PlanetariumMain {
 		}else {
 			//print "errore nell'inserimento"
 		}
-
 		
 	}
 

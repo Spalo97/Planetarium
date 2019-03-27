@@ -9,7 +9,6 @@ public class Pianeta extends Corpo{
 	public Pianeta(String nome, double massa, int id, int x, int y) {
 		
 		super(nome, massa, id, x, y);
-
 	}
 	
 	

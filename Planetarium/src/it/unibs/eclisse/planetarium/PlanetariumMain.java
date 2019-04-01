@@ -17,6 +17,7 @@ public class PlanetariumMain {
 			id++;
 		}else {
 			//print "errore nell'inserimento"
+			//test nick
 		}
 		
 	}

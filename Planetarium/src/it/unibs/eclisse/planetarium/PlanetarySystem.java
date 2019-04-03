@@ -54,17 +54,17 @@ public class PlanetarySystem {
 		id++;
 		
 		//input x 
-		int x=0;
+		double x=0;
 		do {
 			System.out.println("inserisci coordinata x: ");
-			x=lettore.nextInt();
+			x=lettore.nextDouble();
 		}while(x==0);
 		
 		//input y
-		int y=0;
+		double y=0;
 		do {
-			System.out.println("inserisci coordinata x: ");
-			x=lettore.nextInt();
+			System.out.println("inserisci coordinata y: ");
+			y=lettore.nextDouble();
 		}while(y==0);
 		
 		Planet p = new Planet(name, mass, id, x, y);
@@ -90,13 +90,4 @@ public class PlanetarySystem {
 			pianeti.remove(p);
 		}
 	}
-	
-	
-			
-			
-		
-		
-		
-	
-		
-	}
+}

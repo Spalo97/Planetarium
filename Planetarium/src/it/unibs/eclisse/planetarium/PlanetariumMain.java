@@ -82,11 +82,10 @@ public class PlanetariumMain {
 		}
 		else if(sc.nextInt()==2) {
 			System.out.println("\nElenco di tutti i pianeti:\n");
-			Sistema.visualizzaPianeti();
+			
 			System.out.println("\nElenco di tutte le lune:\n");
-			Sistema.visualizzaLune();
+			
 			System.out.println("\n-------------------------------------------------\n");
-		
+		}
 	}
-
 }

@@ -5,10 +5,10 @@ public class CelestialBody {
 	private String name;
 	private double massa;
 	private int id;
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 	
-	public CelestialBody(String nome, double massa, int id, int x, int y) {
+	public CelestialBody(String nome, double massa, int id, double x, double y) {
 		
 		this.name=nome;
 		this.massa=massa;
@@ -29,11 +29,11 @@ public class CelestialBody {
 		return id;
 	}
 
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 

@@ -5,7 +5,7 @@ public class Planet extends CelestialBody{
 
 	private LinkedList<Moon> lune;
 	
-	public Planet(String nome, double massa, int id, int x, int y) {
+	public Planet(String nome, double massa, int id, double x, double y) {
 		
 		super(nome, massa, id, x, y);
 	}

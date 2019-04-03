@@ -9,25 +9,16 @@ public class PlanetarySystem {
 	private boolean endWell = false;
 	
 	
-	public LinkedList<Planet> getPianeti() {
+	public PlanetarySystem(Planet stella) {
+		this.stella=stella;
+	}
+	
+	public LinkedList<Planet> getPlanets() {
 		return pianeti;
 	}
-
-	public void setPianeti(LinkedList<Planet> pianeti) {
-		this.pianeti = pianeti;
-	}
-
 	
-	public PlanetarySystem() {
-		
-	}
-	public void addStar(Planet Star) {
-		this.stella = stella;
-	}
-	
-	public boolean addPianeta(Planet p) {
-		endWell=pianeti.add(p);
-		return endWell;
+	public void addPianeta(Planet p) {
+		pianeti.add(p);
 	}
 
 

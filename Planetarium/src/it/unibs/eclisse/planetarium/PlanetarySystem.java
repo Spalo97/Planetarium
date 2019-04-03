@@ -8,6 +8,7 @@ public class PlanetarySystem {
 	private LinkedList<Planet> pianeti;
 	private boolean endWell = false;
 	
+	
 	public LinkedList<Planet> getPianeti() {
 		return pianeti;
 	}
@@ -68,15 +69,34 @@ public class PlanetarySystem {
 		return p;
 	}
 	
-	public Planet searchPlanet() {
-		Scanner lettore = new Scanner(System.in);
-		String planet = lettore.nextLine();
-		
+	public Planet searchPlanet(String planetName) {
 		for(Planet p:pianeti) {
-			if(p.getName().equals(planet)) {
+			if(p.getName().equals(planetName)) {
 				return p;
 			}
 		}
 		return null;	
+	}
+	
+	public void delPlanet(String planetName){
+		Planet p = searchPlanet(planetName);
+		
+		if(p==null){
+			System.out.println("Pianeta Inesistente!");
+		}else {
+			pianeti.remove(p);
+		}
+	}
+	
+	
+			
+			
+		
+		
+		
+		
+		
+		}
+		
 	}
 }

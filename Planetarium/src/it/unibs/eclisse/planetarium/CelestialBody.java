@@ -1,6 +1,6 @@
 package it.unibs.eclisse.planetarium;
 
-public class Corpo {
+public class CelestialBody {
 
 	private String nome;
 	private double massa;
@@ -8,7 +8,7 @@ public class Corpo {
 	private int x;
 	private int y;
 	
-	public Corpo(String nome, double massa, int id, int x, int y) {
+	public CelestialBody(String nome, double massa, int id, int x, int y) {
 		
 		this.nome=nome;
 		this.massa=massa;
@@ -37,23 +37,4 @@ public class Corpo {
 		return y;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public void setMassa(double massa) {
-		this.massa = massa;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
 }

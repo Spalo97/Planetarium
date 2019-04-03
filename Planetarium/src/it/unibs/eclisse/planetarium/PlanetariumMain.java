@@ -8,9 +8,9 @@ public class PlanetariumMain {
 		
 		int id = 0;
 		
-		Pianeta p = new Pianeta("sole", id, 100000, 15, 20);
+		Planet p = new Planet("sole", id, 100000, 15, 20);
 		
-		Sistema s = new Sistema(p);		
+		PlanetarySystem s = new PlanetarySystem(p);		
 				
 		if(s.addPianeta(p)) {
 			//print "pianeta aggiunto con successo"

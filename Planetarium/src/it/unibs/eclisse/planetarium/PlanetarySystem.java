@@ -18,7 +18,10 @@ public class PlanetarySystem {
 	}
 
 	
-	public PlanetarySystem(Planet stella) {
+	public PlanetarySystem() {
+		
+	}
+	public void addStar(Planet Star) {
 		this.stella = stella;
 	}
 	
@@ -94,9 +97,6 @@ public class PlanetarySystem {
 		
 		
 		
-		
-		
-		}
+	
 		
 	}
-}

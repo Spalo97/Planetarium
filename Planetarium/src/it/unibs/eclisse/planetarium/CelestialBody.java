@@ -2,7 +2,7 @@ package it.unibs.eclisse.planetarium;
 
 public class CelestialBody {
 
-	private String nome;
+	private String name;
 	private double massa;
 	private int id;
 	private int x;
@@ -10,15 +10,15 @@ public class CelestialBody {
 	
 	public CelestialBody(String nome, double massa, int id, int x, int y) {
 		
-		this.nome=nome;
+		this.name=nome;
 		this.massa=massa;
 		this.id=id;
 		this.x=x;
 		this.y=y;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
 	public double getMassa() {

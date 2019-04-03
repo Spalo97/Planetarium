@@ -8,12 +8,20 @@ public class PlanetarySystem {
 	private LinkedList<Planet> pianeti;
 	private boolean endWell = false;
 	
+	public LinkedList<Planet> getPianeti() {
+		return pianeti;
+	}
+
+	public void setPianeti(LinkedList<Planet> pianeti) {
+		this.pianeti = pianeti;
+	}
+
+	
 	public PlanetarySystem(Planet stella) {
 		this.stella = stella;
 	}
 	
 	public boolean addPianeta(Planet p) {
-		
 		endWell=pianeti.add(p);
 		return endWell;
 	}
@@ -60,5 +68,15 @@ public class PlanetarySystem {
 		return p;
 	}
 	
-	
+	public Planet searchPlanet() {
+		Scanner lettore = new Scanner(System.in);
+		String planet = lettore.nextLine();
+		
+		for(Planet p:pianeti) {
+			if(p.getName().equals(planet)) {
+				return p;
+			}
+		}
+		return null;	
+	}
 }

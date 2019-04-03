@@ -1,5 +1,4 @@
 package it.unibs.eclisse.planetarium;
-
 import java.util.LinkedList;
 
 public class Pianeta extends Corpo{

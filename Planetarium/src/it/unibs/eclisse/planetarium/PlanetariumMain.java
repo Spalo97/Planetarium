@@ -54,7 +54,7 @@ public class PlanetariumMain {
 					if(sc.nextInt()==1) {
 						System.out.println("Inserisci i dati del pianeta: ");
 						System.out.println("NOME:");
-						name=sc.nextLine();
+						name=sc.nextLine(); //non aspetta per inserire il nome, capire perché
 						System.out.println("MASSA: ");
 						mass = sc.nextDouble();
 						System.out.println("COORDINATA X:");
@@ -87,9 +87,8 @@ public class PlanetariumMain {
 					LinkedList<Planet> planets = system.getPlanets();
 					
 					for(int i=1;i<planets.size();i++) {
-						System.out.println(planets.get(i).getName();
+						System.out.println(planets.get(i).getName());
 						System.out.println("Le sue lune:");
-						planets.get(i).getMoons();
 					}
 					break;
 			}

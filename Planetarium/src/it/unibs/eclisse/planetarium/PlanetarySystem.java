@@ -5,7 +5,7 @@ import java.util.*;
 public class PlanetarySystem {
 	
 	private Planet stella;
-	private LinkedList<Planet> pianeti;
+	private LinkedList<Planet> planets;
 	private boolean endWell = false;
 	
 	
@@ -14,17 +14,18 @@ public class PlanetarySystem {
 	}
 	
 	public LinkedList<Planet> getPlanets() {
-		return pianeti;
+		return planets;
+	}
+
+	public void addPianeta(Planet p) {
+		planets.add(p);
 	}
 	
-	public void addPianeta(Planet p) {
-		pianeti.add(p);
-	}
-
-
-	public static Planet setPlanet() {
+	/*public static Planet setPlanet() {
 		Scanner lettore = new Scanner(System.in);
 		PlanetariumMain idP = new PlanetariumMain();
+		Planet moons = new Planet();
+		
 		
 		//input da tastiera per il nome del pianeta
 		String name=null;
@@ -58,13 +59,24 @@ public class PlanetarySystem {
 			y=lettore.nextDouble();
 		}while(y==0);
 		
-		Planet p = new Planet(name, mass, id, x, y);
+
+		do {
+			System.out.println("INSERISCI 1 SE VUOI AGGIUNGERE DELLE LUNE: ");
+			if (lettore.nextInt() == 1) {
+				moons.addMoon(Planet.setMoon());
+			}
+			}while(lettore.nextInt() != 1);
+		
+		
+		Planet p = new Planet(name, mass, id, x, y, pianeti);
 		
 		return p;
-	}
+	}*/
+	
+	
 	
 	public Planet searchPlanet(String planetName) {
-		for(Planet p:pianeti) {
+		for(Planet p:planets) {
 			if(p.getName().equals(planetName)) {
 				return p;
 			}
@@ -78,7 +90,7 @@ public class PlanetarySystem {
 		if(p==null){
 			System.out.println("Pianeta Inesistente!");
 		}else {
-			pianeti.remove(p);
+			planets.remove(p);
 		}
 	}
 }

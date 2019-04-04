@@ -94,8 +94,8 @@ public class PlanetariumMain {
 					System.out.println(" [1] Aggiungi luna      [2] Distruggi luna      [3] Ricerca luna");
 					
 					if(sc.nextInt()==1) {
-						System.out.println("A quale pianeta vuoi aggiungere delle lune?");
-						p = system.searchPlanet(sc.nextLine());
+						System.out.print("A quale pianeta vuoi aggiungere delle lune?");
+						p = system.searchPlanet(sc.next());
 						
 						System.out.println("Inserisci i dati della luna: ");
 						System.out.print("NOME: ");
@@ -111,15 +111,15 @@ public class PlanetariumMain {
 						p.getMoons().add(m);
 					}
 					else if(sc.nextInt()==2) {
-						System.out.println("Intorno quale pianeta orbita la luna?: ");
-						p=system.searchPlanet(sc.nextLine());
+						System.out.print("Intorno quale pianeta orbita la luna?: ");
+						p=system.searchPlanet(sc.next());
 						System.out.print("Inserisci nome della luna da distruggere?");
 						p.delMoon(sc.next());
 						
 					}
 					else if(sc.nextInt()==3){
-						System.out.println("Intorno quale pianeta orbita la luna?: ");
-						p=system.searchPlanet(sc.nextLine());
+						System.out.print("Intorno quale pianeta orbita la luna?: ");
+						p=system.searchPlanet(sc.next());
 						System.out.print("Inserisci nome della luna da cercare: ");
 						p.searchMoon(sc.next());
 						System.out.println("NOME:"  + p.getName());

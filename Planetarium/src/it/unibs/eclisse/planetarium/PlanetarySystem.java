@@ -5,7 +5,7 @@ import java.util.*;
 public class PlanetarySystem {
 	
 	private Planet stella;
-	private LinkedList<Planet> planets;
+	private LinkedList<Planet> planets = new LinkedList<Planet>();
 	private boolean endWell = false;
 	
 	
@@ -17,9 +17,51 @@ public class PlanetarySystem {
 		return planets;
 	}
 
-	public void addPianeta(Planet p) {
-		planets.add(p);
+	public void setPlanets(LinkedList<Planet> planets) {
+		this.planets = planets;
 	}
+	
+	public void showPlanets() {
+		Planet p;;
+		for (int i=0; i<planets.size(); i++) {
+			System.out.println(planets.get(i).getName());
+			p= planets.get(i);
+			if(p.getMoons().isEmpty()) {
+				System.out.println("Le sue lune sono: ");
+				p.showMoon(p);
+			}
+		}
+	}
+	
+	public double calcMassCenterX() {
+		double massCenterX=0;
+		double totMass=0;
+		double totX=0;
+		
+		for (int i=0; i<planets.size(); i++) {
+			totMass=totMass+planets.get(i).getMassa();
+			totX=totX+planets.get(i).getX();
+		}
+		
+		massCenterX=totX/totMass;
+		return massCenterX;
+	}
+	
+	public double calcMassCenterY() {
+		double massCenterY=0;
+		double totMass=0;
+		double totY=0;
+		
+		for (int i=0; i<planets.size(); i++) {
+			totMass=totMass+planets.get(i).getMassa();
+			totY=totY+planets.get(i).getY();
+		}
+		
+		massCenterY=totY/totMass;
+		return massCenterY;
+	}
+	
+
 	
 	/*public static Planet setPlanet() {
 		Scanner lettore = new Scanner(System.in);
@@ -86,7 +128,6 @@ public class PlanetarySystem {
 	
 	public void delPlanet(String planetName){
 		Planet p = searchPlanet(planetName);
-		
 		if(p==null){
 			System.out.println("Pianeta Inesistente!");
 		}else {

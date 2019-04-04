@@ -3,16 +3,26 @@ import java.util.*;
 
 public class Planet extends CelestialBody{
 
-	private LinkedList<Moon> moons;
+	private LinkedList<Moon> moons = new LinkedList<Moon>();
 
-	public Planet(String nome, double massa, int id, double x, double y) {
+	public LinkedList<Moon> getMoons() {
+		return moons;
+	}
+
+	public void setMoons(LinkedList<Moon> moons) {
+		this.moons = moons;
+	}
+
+
+	public Planet(String nome, double massa, int id, double x, double y, LinkedList moon) {
 		super(nome, massa, id, x, y);
 	}
 	
-	public void addMoon(Moon p) {
-		moons.add(p);
+	public void showMoon(Planet p){
+		for ( int i=0; i<p.moons.size();i++) {
+			System.out.println(p.moons.get(i).getName());
+		}
 	}
-
 
 	/*public static Moon setMoon() {
 		Scanner lettore = new Scanner(System.in);
@@ -68,19 +78,20 @@ public class Planet extends CelestialBody{
 		return null;	
 	}*/
 	
-	public int searchMoon(String moonName) {
+
+	public Moon searchMoon(String moonName) {
 		for(Moon m:moons) {
 			if(m.getName().equals(moonName)) {
-				return m.getId();
+				return m;
 			}
 		}
-		return 0; //è sbagliato ma vuole comunque un return devo rivederlo
+		return null;
+
 	}
 	
 	public void delMoon(String moonName){
-		int m = searchMoon(moonName);
+		Moon m = searchMoon(moonName);
 		moons.remove(m);
-
 	}
 	
 }

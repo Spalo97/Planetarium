@@ -2,20 +2,7 @@ package it.unibs.eclisse.planetarium;
 import java.util.*;
 
 public class PlanetariumMain {	
-	//idPlanet serve per contare quanti pianeti aggiungo correttamente
-	// in modo da gestire l'assegnazione dell'id
-	//private int idPlanet = 0;
-	/*public int getIdPlanet() {
-		return idPlanet;
-	}
-	public void setIdPlanet(int idPlanet) {
-		this.idPlanet = idPlanet;
-	}
-	
-	tutto lavoro inutile! si crea e si usa nel main
-	*/
-	
-	
+
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
@@ -25,6 +12,9 @@ public class PlanetariumMain {
 		int x;
 		int y;
 		boolean choise = true;
+		LinkedList<Moon> tempMoon = new LinkedList<Moon>();
+		LinkedList<Planet> planets = new LinkedList<Planet>();
+		Planet p;
 		//PlanetariumMain idPlanet = new PlanetariumMain();  e questa da dove esce?
 		//int id=idPlanet.getIdPlanet();
 		
@@ -39,13 +29,14 @@ public class PlanetariumMain {
 		name = sc.nextLine();
 		System.out.println("Inserisci massa:");
 		mass = sc.nextDouble();
-		Planet stella = new Planet(name,mass, idPlanet, 0, 0);
+		Planet stella = new Planet(name,mass, idPlanet, 0, 0, null);
 		idPlanet++;
 		PlanetarySystem system = new PlanetarySystem(stella);
+		system.getPlanets().add(stella);
 		
 		do {
 			System.out.println("Cosa vuoi fare?");
-			System.out.println(" [1] Gestisci pianeti      [2] Gestisci lune      [3] Visualizza sistema");
+			System.out.println(" [1] Gestisci pianeti      [2] Gestisci lune      [3] Visualizza sistema 	[4]Centro di Massa");
 			
 			switch(sc.nextInt()) {
 				case 1:
@@ -53,16 +44,37 @@ public class PlanetariumMain {
 					System.out.println(" [1] Aggiungi pianeta      [2] Distruggi pianeta      [3] Ricerca pianeta");
 					if(sc.nextInt()==1) {
 						System.out.println("Inserisci i dati del pianeta: ");
-						System.out.println("NOME:");
-						name=sc.nextLine(); //non aspetta per inserire il nome, capire perché
+						System.out.print("NOME: ");
+						name = sc.next(); 
 						System.out.println("MASSA: ");
 						mass = sc.nextDouble();
 						System.out.println("COORDINATA X:");
 						x=sc.nextInt();
 						System.out.println("COORDINATA Y:");
 						y=sc.nextInt();
-						Planet p = new Planet(name,mass,idPlanet,x, y);
+						p = new Planet(name,mass,idPlanet,x, y, null);
+						System.out.println("Il pianeta ha delle lune? S[1]/N[0]");
 						idPlanet++;
+						if (sc.nextInt()==1) {
+							do {
+								System.out.println("Inserisci i dati della luna: ");
+								System.out.print("NOME: ");
+								name = sc.next();
+								System.out.println("MASSA: ");
+								mass = sc.nextDouble();
+								System.out.println("COORDINATA X:");
+								x=sc.nextInt();
+								System.out.println("COORDINATA Y:");
+								y=sc.nextInt();
+								Moon m = new Moon(name,mass,idPlanet,x, y);
+								tempMoon.add(m);
+								idPlanet++;
+								System.out.println("il pianeta ha altre lune?  S[1]/N[0]");
+							}while(sc.nextInt()==1);
+							p.getMoons().addAll(tempMoon);
+							tempMoon.clear();
+						}
+						system.getPlanets().add(p);
 					}
 					else if(sc.nextInt()==2) {
 						System.out.println("Inserisci nome del pianeta da distruggere: ");
@@ -70,7 +82,7 @@ public class PlanetariumMain {
 					}
 					else {
 						System.out.println("Inserisci nome del pianeta da cercare: ");
-						Planet p = system.searchPlanet(sc.nextLine());
+						p = system.searchPlanet(sc.nextLine());
 						System.out.println("NOME:"  + p.getName());
 						System.out.println("ID: " + p.getId());
 						System.out.println("MASSA: " + p.getMassa());
@@ -80,69 +92,57 @@ public class PlanetariumMain {
 				case 2:
 					System.out.println("Bene, hai scelto di gestire le lune.\nCosa vuoi fare?");
 					System.out.println(" [1] Aggiungi luna      [2] Distruggi luna      [3] Ricerca luna");
+					
+					if(sc.nextInt()==1) {
+						System.out.println("A quale pianeta vuoi aggiungere delle lune?");
+						p = system.searchPlanet(sc.nextLine());
+						
+						System.out.println("Inserisci i dati della luna: ");
+						System.out.print("NOME: ");
+						name = sc.next(); 
+						System.out.println("MASSA: ");
+						mass = sc.nextDouble();
+						System.out.println("COORDINATA X:");
+						x=sc.nextInt();
+						System.out.println("COORDINATA Y:");
+						y=sc.nextInt();
+						Moon m = new Moon(name,mass,idPlanet,x, y);
+						idPlanet++;
+						p.getMoons().add(m);
+					}
+					else if(sc.nextInt()==2) {
+						System.out.println("Intorno quale pianeta orbita la luna?: ");
+						p=system.searchPlanet(sc.nextLine());
+						System.out.print("Inserisci nome della luna da distruggere?");
+						p.delMoon(sc.next());
+						
+					}
+					else if(sc.nextInt()==3){
+						System.out.println("Intorno quale pianeta orbita la luna?: ");
+						p=system.searchPlanet(sc.nextLine());
+						System.out.print("Inserisci nome della luna da cercare: ");
+						p.searchMoon(sc.next());
+						System.out.println("NOME:"  + p.getName());
+						System.out.println("ID: " + p.getId());
+						System.out.println("MASSA: " + p.getMassa());
+						System.out.println("COORDINATE: (" + p.getX() + " , " + p.getY()+")");			
+					}
 					break;
 				case 3:					
 					System.out.println("\nElenco di tutti i pianeti:\n");
-					
-					LinkedList<Planet> planets = system.getPlanets();
-					
-					for(int i=1;i<planets.size();i++) {
-						System.out.println(planets.get(i).getName());
-						System.out.println("Le sue lune:");
-					}
+					system.showPlanets();
 					break;
-			}
 			
+				case 4:
+					System.out.println("Il centro di massa �; ");
+					System.out.println("( " +system.calcMassCenterX() +" , " +system.calcMassCenterY() + " )");
+					break;
+				
+				}
 			System.out.println("Vuoi fare altro? [S=1/N=0]");
 			if(sc.nextInt()==0) {
 				choise=false;
 			}
 		}while(choise);
-
 	}
-	
-	/* //funzione di gestione pianeti
-	public static void gestionePianeti() {
-		Scanner lettore = new Scanner(System.in);
-		System.out.println("Bene, hai scelto di gestire i pianeti.\nCosa vuoi fare?");
-		System.out.println(" [1] Aggiungi pianeta      [2] Distruggi pianeta      [3] Ricerca pianeta");
-		//PlanetarySystem s = new PlanetarySystem(); il sistema è uno
-		if(sc.nextInt()==1) {
-			system.addPianeta(system.setPlanet());		
-		}
-		else if(sc.nextInt()==2) {
-			System.out.println("Inserisci nome del pianeta da distruggere: ");
-			s.delPlanet(lettore.nextLine());
-		}
-		else {
-			System.out.println("Inserisci nome del pianeta da cercare: ");
-			Planet p = s.searchPlanet(lettore.nextLine());
-			System.out.println("NOME:"  + p.getName());
-			System.out.println("ID: " + p.getId());
-			System.out.println("MASSA: " + p.getMassa());
-			System.out.println("COORDINATE: (" + p.getX() + " , " + p.getY());			
-		}
-	}
-	
-	//gestione lune
-	public static void gestioneLune() {
-		System.out.println("Bene, hai scelto di gestire le lune.\nCosa vuoi fare?");
-		System.out.println(" [1] Aggiungi luna      [2] Distruggi luna      [3] Ricerca luna");
-	}
-	
-	//gestione sistema
-	public static void gestioneSistema() {
-		System.out.println("Bene, hai scelto di gestire il sistema.\nCosa vuoi fare?");
-		System.out.println("[1] Distruggi il sistema      [2] Visualizza sistema");
-		if(sc.nextInt()==1) {
-			
-		}
-		else if(sc.nextInt()==2) {
-			System.out.println("\nElenco di tutti i pianeti:\n");
-			
-			System.out.println("\nElenco di tutte le lune:\n");
-			
-			System.out.println("\n-------------------------------------------------\n");
-		}
-	}*/
 }

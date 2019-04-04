@@ -26,7 +26,7 @@ public class PlanetarySystem {
 		for (int i=0; i<planets.size(); i++) {
 			System.out.println(planets.get(i).getName());
 			p= planets.get(i);
-			if(p.getMoons().isEmpty()) {
+			if(!p.getMoons().isEmpty()) {
 				System.out.println("Le sue lune sono: ");
 				p.showMoon(p);
 			}
